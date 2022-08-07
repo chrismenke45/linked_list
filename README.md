@@ -1,0 +1,1 @@
+This is small project to create a linked list class with a few instance methods.  It will also require making a node class for each node of the linked list.
