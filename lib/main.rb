@@ -1,12 +1,19 @@
 require "./lib/linked_list.rb"
 list = LinkedList.new()
+list.prepend("q")
 p list.to_s
+
 list.append("s")
 p list.to_s
 list.append("t")
 p list.to_s
 list.prepend("r")
 p list.to_s
+list.insert_at(6, -1)
+p list.to_s
+list.insert_at("p", 0)
+p list.to_s
+
 p list.find("t")
 p list.find("r")
 p list.find("q")
@@ -23,3 +30,6 @@ p list.to_s
 p list.contains?("r")
 p list.contains?("s")
 p list.contains?("t")
+p list.to_s
+list.remove_at(2)
+p list.to_s

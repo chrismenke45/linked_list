@@ -28,7 +28,7 @@ class LinkedList
 
   def at(index)
     #raise "Range Error in intance of LinkedList.at : Index must be greater than or equal to 0" if index < 0
-    index = self.size - index if index < 0
+    index = self.size + index if index < 0
     i = 0
     node = @head
     while i < index
@@ -69,6 +69,39 @@ class LinkedList
     end
   end
 
+  def insert_at(value, index)
+    index = self.size + index if index < 0
+    raise "Range Error: invalid index supplied for insert_at method" if index >= self.size || index < 0
+    if index == 0
+      self.prepend(value)
+    else
+      i = 0
+      node = @head
+      while i < index - 1
+        node = node.next_node
+        i += 1
+      end
+      node_to_insert = new_node(value, node.next_node)
+      node.next_node = node_to_insert
+    end
+  end
+
+  def remove_at(index)
+    index = self.size + index if index < 0
+    raise "Range Error: invalid index supplied for remove_at method" if index >= self.size || index < 0
+    if index == 0
+      @head = @head.next_node
+    else
+      i = 0
+      node = @head
+      while i < index - 1
+        node = node.next_node
+        i += 1
+      end
+      node.next_node = node.next_node.next_node
+    end
+  end
+
   private
 
   def tail?(node)
@@ -79,7 +112,7 @@ class LinkedList
     node.next_node ? tail_node(node.next_node) : node
   end
 
-  def new_node(value)
-    Node.new(value)
+  def new_node(value, next_node = nil)
+    Node.new(value, next_node)
   end
 end
